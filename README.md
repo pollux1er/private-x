@@ -1,8 +1,6 @@
 private-x
 =========
 
-Private project with IFEYI.
-
-POLLUX and IFEYI project.
+Private project with SPINTO and IFEYI.
 
 Useless project. Thanks
