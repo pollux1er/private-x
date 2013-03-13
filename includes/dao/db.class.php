@@ -50,7 +50,7 @@ class db {
 		self::setDsn();
 		try { 
 			(!self::$debug) ? error_reporting(0) : error_reporting(-1);
-			self::$con = new PDO($this->dsn, __dbuname__, __dbupwd__/* , array( PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true, ) */);
+			self::$con = new PDO(self::$dsn, __dbuname__, __dbupwd__/* , array( PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true, ) */);
 			self::getInstance()->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 		}
 		catch(PDOException $e) {
@@ -103,7 +103,7 @@ class db {
 	 * Méthode pour executer une requete
 	 * @return ressource
 	 */
-	public function sql($requete) {
+	public static function sql($requete) {
 		try {
 			return self::getInstance()->exec($requete);
 		} catch(PDOException $e) {
@@ -116,7 +116,7 @@ class db {
 	 * Méthode pour executer une requete
 	 * @return ressource
 	 */
-	public function sqls($requete) {
+	public static function sqls($requete) {
 		try {
 			return self::getInstance()->query($requete);
 		} catch(PDOException $e) {
@@ -128,8 +128,8 @@ class db {
 	/**
 	 * Méthode destructeur de la classe bd
 	 */
-	public function __destruct() {
-		return self::$con ? self::$con = null : self::$con;
+	public function deconnexion() {
+		self::$con = null;
 	}
 	
 }

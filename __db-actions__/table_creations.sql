@@ -1,75 +1,17 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 3.2.0.1
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Sam 16 Février 2013 à 22:31
--- Version du serveur: 5.5.24-log
--- Version de PHP: 5.4.3
+-- Serveur: localhost
+-- Généré le : Mer 13 Mars 2013 à 20:49
+-- Version du serveur: 5.1.36
+-- Version de PHP: 5.3.0
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
 --
 -- Base de données: `smsforever`
 --
-
--- --------------------------------------------------------
-
---
--- Structure de la table `contacts`
---
-
-CREATE TABLE IF NOT EXISTS `contacts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `numero` varchar(20) NOT NULL,
-  `nom` varchar(100) DEFAULT NULL,
-  `id_user` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `ip2nation`
---
-
-CREATE TABLE IF NOT EXISTS `ip2nation` (
-  `ip` int(11) unsigned NOT NULL DEFAULT '0',
-  `country` char(2) NOT NULL DEFAULT '',
-  KEY `ip` (`ip`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `ip2nationcountries`
---
-
-CREATE TABLE IF NOT EXISTS `ip2nationcountries` (
-  `code` varchar(4) NOT NULL DEFAULT '',
-  `iso_code_2` varchar(2) NOT NULL DEFAULT '',
-  `iso_code_3` varchar(3) DEFAULT '',
-  `iso_country` varchar(255) NOT NULL DEFAULT '',
-  `country` varchar(255) NOT NULL DEFAULT '',
-  `lat` float NOT NULL DEFAULT '0',
-  `lon` float NOT NULL DEFAULT '0',
-  PRIMARY KEY (`code`),
-  KEY `code` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `registrations`
---
-
-CREATE TABLE IF NOT EXISTS `registrations` (
-  `numero` int(11) NOT NULL,
-  `activation_code` varchar(6) NOT NULL,
-  `etat` int(11) NOT NULL,
-  `date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -79,14 +21,19 @@ CREATE TABLE IF NOT EXISTS `registrations` (
 
 CREATE TABLE IF NOT EXISTS `sms` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `expediteur` varchar(20) DEFAULT NULL,
-  `destinataire` varchar(20) DEFAULT NULL,
-  `message` varchar(160) DEFAULT NULL,
-  `return` varchar(200) DEFAULT NULL,
-  `ip_sender` varchar(15) DEFAULT NULL,
-  `date` datetime NOT NULL,
+  `id_em` int(11) NOT NULL,
+  `num_tel_em` varchar(15) NOT NULL,
+  `num_tel_recep` varchar(15) NOT NULL,
+  `message` varchar(255) NOT NULL,
+  `error_status` varchar(255) NOT NULL,
+  `adr_ip_em` varchar(12) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Contenu de la table `sms`
+--
+
 
 -- --------------------------------------------------------
 
@@ -96,9 +43,18 @@ CREATE TABLE IF NOT EXISTS `sms` (
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `numero` int(11) NOT NULL,
-  `etat` int(11) NOT NULL DEFAULT '0' COMMENT '1 ou 0 équivaut à ',
-  `motdepasse` varchar(32) NOT NULL,
-  `email` varchar(80) DEFAULT NULL,
+  `pseudo` varchar(20) NOT NULL,
+  `passwd` varchar(50) NOT NULL,
+  `num_tel` varchar(15) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `status` enum('0','1') NOT NULL,
+  `country` varchar(3) NOT NULL,
+  `reseau_tel` varchar(3) NOT NULL,
+  `registered` enum('0','1') NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Contenu de la table `users`
+--
+

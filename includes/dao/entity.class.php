@@ -4,12 +4,19 @@ class entity {
 
 	var $_result;
 
+	/**
+	 *
+	 */
+	function cleanData($data) {
+		return db::getInstance()->quote($data);	
+	}
+
 	/*
 	 * Method to make a single insertion in the database
 	 * @param string		the query in a string
 	 * @return integer 	the number of row affected or 0 if no save was done
 	 */
-	public function insert($requete, $motif = null) {
+	public function __insert($requete, $motif = null) {
 		//var_dump($requete); die;
 		try {
 			db::getInstance()->exec("set names utf8");
@@ -26,7 +33,7 @@ class entity {
 	 * Method to make multiple insertion at a time
 	 * Return 
 	 */
-	public function multiInsert($table, $champsbd, $valeurs) {
+	public function __multiInsert($table, $champsbd, $valeurs) {
 		$champs = $this->ConstruitChamps($champsbd);
 		$requete = "INSERT INTO " . $table . " SET " . $champs; 
 		$etat = db::getInstance()->prepare($requete);
@@ -41,7 +48,7 @@ class entity {
 	/*
 	 * Méthode qui tranforme en chaine de caractère le tableau des champs pour l'insertion dans la base de données
 	 */
-	private function ConstruitChamps($champsbd) {
+	private function __construitChamps($champsbd) {
 		$champs = null;
 		foreach($champsbd as $champ) {
 			$champs .= $champ . " = ?, ";
@@ -52,7 +59,7 @@ class entity {
 	/*
 	 *Méthode de sélection
 	 */
-	public function select($requete, $motif = null) {
+	public function __select($requete, $motif = null) {
 		try {
 			// if($this->traceSQL == true) {
 				// include_once 'fichier.class.php';
@@ -74,13 +81,13 @@ class entity {
 		return $st->fetchAll(PDO::FETCH_OBJ);
 	}
 	
-	public function count($table) {
+	public function __count($table) {
 		$statement = db::getInstance()->prepare("SELECT * FROM $table");
 		$statement->execute();
 		return $count = $statement->rowCount();
 	}
 	
-	public function countResult($request) {
+	public function __countResult($request) {
 		$statement = db::getInstance()->prepare($request);
 		// Reflection::export(new ReflectionObject($statement));
 		//var_dump(Reflection::export(new ReflectionObject($statement))); die;
@@ -92,12 +99,12 @@ class entity {
 	 * Method to get the id of the last insertion
 	 * @return integer	the value of the last inserted id
 	 */
-	public function lastId() {
+	public function __lastId() {
 		return db::getInstance()->lastInsertId();
 	}
 	
 	/** Methode permettant de construire une requete d'insertion */
-	protected function buildInsertQuery($data, $table) {
+	protected function __buildInsertQuery($data, $table) {
 		$fields = '';
 		$values = '';
 		foreach($data as $k => $v) {
@@ -111,7 +118,7 @@ class entity {
 	}
 	
 	/** Methode permettant de construire une requete d'edition */
-	protected function buildUpdateQuery($data, $table, $idRecordToUpdate, $primarykeyName = NULL) {
+	protected function __buildUpdateQuery($data, $table, $idRecordToUpdate, $primarykeyName = NULL) {
 		$updates = '';
 		$query = "UPDATE $table SET ";
 		foreach($data as $k => $v) {
@@ -123,7 +130,7 @@ class entity {
 		return $query;
 	}
 	
-	public function getPrimaryKey($table) {
+	public function __getPrimaryKey($table) {
 		$sql = "SHOW KEYS FROM $table WHERE Key_name = 'PRIMARY'";
 		$res = $this->select($sql);
 		return $res[0]->Column_name;
@@ -131,7 +138,7 @@ class entity {
 	
 	
 	/** Methode permettant de construire une requete d'edition */
-	protected function buildUpdateQueryWhere($data, $table, $idRecordToUpdate = NULL) {
+	protected function __buildUpdateQueryWhere($data, $table, $idRecordToUpdate = NULL) {
 		$updates = '';
 		$query = "UPDATE $table SET ";
 		foreach($data as $k => $v) {
@@ -143,7 +150,7 @@ class entity {
 		return $query;
 	}
 	
-	public function cleanQuery($donnee) {
+	public function __cleanQuery($donnee) {
 		//echo "cote gpc"; var_dump(get_magic_quotes_gpc());
 		return get_magic_quotes_gpc() ? $this->getInstance()->quote($donnee) : $donnee;
 		
@@ -152,9 +159,7 @@ class entity {
 	 Methode pour nettoyer les valeurs entrees dans un formulaire
 	*/
 	public function cleanData($donnee) {
-		//echo "cote gpc"; var_dump(get_magic_quotes_gpc());
-		return get_magic_quotes_gpc() ? $donnee :  /* $this->getInstance()->quote( */$donnee/* ) */;
-		
+				
 	}
 	
 	/*
