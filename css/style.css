@@ -1,0 +1,419 @@
+body {
+	padding-top: 60px;
+	padding-bottom: 1em;
+	background: url(../img/px_by_Gre3g.png) repeat top left;
+}
+.edit1, .done1,
+.edit2, .done2{
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+	
+}
+/* Clear 
+----------------------------------------------------------------------------------------------------*/
+.clear {
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+/* http://perishablepress.com/press/2008/02/05/lessons-learned-concerning-the-clearfix-css-hack */
+.clearfix:after {
+	clear: both;
+	content: ' ';
+	display: block;
+	font-size: 0;
+	line-height: 0;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+.clearfix {display: inline-block;}
+* html .clearfix {
+	height: 1%;
+}
+.clearfix {
+	display: block;
+}
+ul{
+  list-style: none;
+}
+
+
+
+.effect
+{
+  	position:relative;
+    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 0, 0, 0.1) inset;
+       -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 0, 0, 0.1) inset;
+            box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 0, 0, 0.1) inset;
+}
+.effect:before, .effect:after
+{
+	content:"";
+    position:absolute;
+    z-index:-1;
+    -webkit-box-shadow:0 0 10px rgba(0,0,0,0.3);
+    -moz-box-shadow:0 0 10px rgba(0,0,0,0.3);
+    box-shadow:0 0 10px rgba(0,0,0,0.3);
+    top:50%;
+    bottom:0;
+    left:10px;
+    right:10px;
+    -moz-border-radius:100px / 10px;
+    border-radius:100px / 10px;
+}
+.effect:after
+{
+	right:10px;
+    left:auto;
+    -webkit-transform:skew(8deg) rotate(3deg);
+       -moz-transform:skew(8deg) rotate(3deg);
+        -ms-transform:skew(8deg) rotate(3deg);
+         -o-transform:skew(8deg) rotate(3deg);
+            transform:skew(8deg) rotate(3deg);
+}
+
+.content{
+  max-width: 1000px;
+  margin: auto;	
+	padding: 0;
+}
+#corps{
+  position: relative;
+}
+
+#logo h1{
+  color: #fff;
+	font-size: 1.8em;
+	text-align: center;
+	text-shadow: 1px 1px 1px #666;
+	filter: dropshadow(color=#666, offx=1, offy=2);
+}
+
+.form{
+  position: absolute;
+	right: 1em;
+	top: 0;
+	z-index: 9999;
+}
+.corps{
+  background: #fff;
+	margin-top: 1em;
+}
+.menu_gauche{
+  /* padding-left: 1em; */
+}
+.sidebar-nav {
+	padding: 20px;
+}
+.main{
+  background: url(../img/1.png) no-repeat top right;
+	height: 325px;
+	overflow: hidden;
+}
+.indicatif{
+  color: #aaa;
+}
+form, #confirmation{
+    width: 75%;
+	margin: auto;
+	padding: 1em 1em 3em 1em;
+}
+label, input, textarea{
+	
+}
+label{
+  color: #555;
+  display: block;
+	font-size: 1em;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+input, textarea{
+    border: 1px solid #eee;
+		width: 50%;
+		background: #fff;
+    background: rgba(255, 255, 255, 0.5) !important;
+	-webkit-box-shadow: inset 1px 1px 1px 1px #ccc;
+	box-shadow: inset 1px 1px 1px 1px #ccc;
+	-moz-box-shadow: inset 1px 1px 1px 1px #ccc;
+	padding: .5em;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+.countdown{
+	color: #555;
+}
+.prefait1, .done1,
+.prefait2, .done2{
+  display: inline-block;
+}
+.wrapper-dropdown{
+    /* Size and position */
+    position: relative;
+    /* margin-top: 2em; */
+    margin-bottom: 20px;
+    padding: 5px;
+    font-size: 0.9em;
+		width: 50%;
+		display: inline-block;
+    /* Styles */
+		background: #fff;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 1px;
+    border: 1px solid rgba(0,0,0,0.15);
+    box-shadow: 0 1px 1px rgba(50,50,50,0.1);
+    cursor: pointer;
+    outline: none;
+
+    /* Font settings */
+    font-weight: bold;
+		color: #555;
+}
+h1.frontpageHeadline {
+	text-shadow:2px 2px 2px #ffffff
+}
+.wrapper-dropdown:after{
+    content: "";
+    /* width: 0; 
+    height: 0;*/
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    margin-top: -3px;
+    border-width: 6px 6px 0 6px;
+    border-style: solid;
+    border-color: #555 transparent;
+}
+
+.wrapper-dropdown .dropdown {
+  /* Size & position */
+    position: absolute;
+    top: 140%;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    /* Styles */
+		background: #fff;
+    border-radius: inherit;
+    border: 1px solid rgba(0,0,0,0.17);
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    font-weight: normal;
+    -webkit-transition: all 0.5s ease-in;
+    -moz-transition: all 0.5s ease-in;
+    -ms-transition: all 0.5s ease-in;
+    -o-transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
+    list-style: none;
+
+    /* Hiding */
+    opacity: 0;
+    pointer-events: none;
+}
+
+.wrapper-dropdown .dropdown:after{
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 100%;
+    right: 15px;
+    border-width: 0 6px 6px 6px;
+    border-style: solid;
+    border-color: #fff transparent;    
+}
+
+.wrapper-dropdown .dropdown:before{
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 100%;
+    right: 13px;
+    border-width: 0 8px 8px 8px;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.1) transparent;    
+}
+
+.wrapper-dropdown .dropdown li{
+  padding: .7em 0 .7em 0;
+  border-bottom: 1px solid #e6e8ea;
+}
+.wrapper-dropdown .dropdown li a{
+    display: block;
+    padding: 3px 20px;
+    text-decoration: none;
+    color: #666;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,1);
+}
+
+.wrapper-dropdown .dropdown li i{
+    float: right;
+    color: inherit;
+}
+
+.wrapper-dropdown .dropdown li:first-of-type a{
+    border-radius: 1px 1px 0 0;
+}
+
+.wrapper-dropdown .dropdown li:last-of-type a {
+    border: none;
+    border-radius: 0 0 1px 1px;
+}
+
+.wrapper-dropdown .dropdown li:hover a{
+  color: #fff;
+	background-color: #0081c2;
+  background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));
+  background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -o-linear-gradient(top, #0088cc, #0077b3);
+  background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
+}
+
+.wrapper-dropdown.active .dropdown{
+    opacity: 1;
+    pointer-events: auto;
+}
+#confirmation{
+	margin-top: 2em;
+}
+#confirmation h1{
+  font-size: 1.5em;
+	background: #fff;
+	background: rgba(255, 255, 255, 0.5);
+	border: 1px solid #fff;
+	padding: 1em;
+	text-align: center;
+}
+#confirmation p{
+	text-align: center;
+	background: #fff;
+	background: rgba(255, 255, 255, 0.5);
+	border: 1px solid #fff;
+	padding: 1em;
+}
+
+.formulaire{
+  padding: 1em;
+	background: #fff;
+	background: rgba(255, 255, 255, 0.5);
+	border: 1px solid #fff;
+}
+#footer{
+    margin-top: 1em;
+	  background: #fff;
+		border-bottom: 10px solid #1b1b1b;
+}
+.footer{
+  color: #333;
+	padding: 0.5em 1em 1em 1em;
+	position: relative;
+	min-height: 100px;
+	overflow: hidden;
+	font-size: 0.8em;
+}
+.footer .banner{
+    top: 1em;
+	right: 1em;
+}
+
+.footer h1{
+  font-size: 1.1em;
+	margin: 0;
+}
+.footer ul{
+  margin: 0 0 0 0.3em;
+}
+
+/* Custom sizes
+============================================================================================== */
+@media screen and (max-width: 480px) {
+ /* Add your styles for devices with a maximum width of 480 */
+	.form{
+		color: #0081c2;
+	}
+	.form label{
+		color: #0081c2;
+	}
+}
+
+@media screen and (max-width: 768px) {
+ /* Add your styles for devices with a maximum width of 768 */
+	.form{
+		top: 25em;
+		right: 0;
+		color: 
+	}
+}
+
+@media screen and (max-width: 320px) {
+ /* Add your styles for devices with a maximum width of 320 */
+}
+
+@media screen and (max-width: 1024px) {
+ /* Add your styles for devices with a maximum width of 1024 */
+}
+@media screen and (max-width: 979px) {
+	body {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+}
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+   /* Add your styles for devices with a maximum width of 1024 */
+	body {
+		padding-top: 0;
+		padding-bottom: 0;
+		background: url(../img/px_by_Gre3g.png) repeat top left;
+	}
+}
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+  /* Add your styles for devices with a maximum width of 768 */
+}
+
+/* Pour les SMS */
+
+#bar
+{
+	background-color:#5fbbde;
+	width:0px;
+	height:16px;
+}
+#barbox
+{
+float:right; 
+height:16px; 
+background-color:#FFFFFF; 
+width:100px; 
+border:solid 2px #000; 
+margin-right:3px;
+-webkit-border-radius:5px;-moz-border-radius:5px;
+}
+#count
+{
+float:right; margin-right:8px; 
+font-family:'Georgia', Times New Roman, Times, serif; 
+font-size:16px; 
+font-weight:bold; 
+color:#666666
+}
+#contentbox
+{
+	width:350px; height:80px;
+	/* border:solid 2px #006699; */
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color : black;
+	opacity : 1;
+	
+}

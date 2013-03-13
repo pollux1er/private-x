@@ -3,12 +3,17 @@
 class entity {
 
 	var $_result;
+	var $table;
 
 	/**
 	 *
 	 */
 	function cleanData($data) {
 		return db::getInstance()->quote($data);	
+	}
+	
+	function contruct() {
+		$this->table = __CLASS__;
 	}
 
 	/*
@@ -61,13 +66,7 @@ class entity {
 	 */
 	public function __select($requete, $motif = null) {
 		try {
-			// if($this->traceSQL == true) {
-				// include_once 'fichier.class.php';
-				// $log = new fichier();
-				// $log->logAction($log->sqlLogsFile, $requete);
-			// }
-			//if(!is_null($motif)) $this->traceSQL($requete, $motif);
-			//is_null($motif) ? : $this->traceSQL($requete, $motif);
+			
 			db::getCon()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			if(preg_match("/date/", $requete)) {
 				$this->sql("SET lc_time_names = 'fr_FR';");
@@ -158,9 +157,9 @@ class entity {
 	/*
 	 Methode pour nettoyer les valeurs entrees dans un formulaire
 	*/
-	public function cleanData($donnee) {
+	// public function cleanData($donnee) {
 				
-	}
+	// }
 	
 	/*
 	 * Method to make a single insertion in the database

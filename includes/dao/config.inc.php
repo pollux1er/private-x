@@ -10,11 +10,11 @@ define ("__host__", "127.0.0.1");
 /**
  * Le nom d'utilisateur ayant des droits sur la bd 
  */
-define ("__dbuname__", "drupal");
+define ("__dbuname__", "root");
 /**
  * Le mot de passe de l'utilisateur
  */
-define ("__dbupwd__", "drupal");
+define ("__dbupwd__", "");
 /**
  * Le nom de la bd
  */

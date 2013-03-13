@@ -16,6 +16,7 @@ class users extends entity {
 	var $reseau_tel;
 	//0='non', 1='oui'
 	var $registered; 
+	
 
 	/**
 	 * constructeur de la classe user
@@ -134,7 +135,7 @@ class users extends entity {
 	/**
 	 *
 	 */
-	function update() {
+	function update($query) {
 		
 		return parent::__update($query);	
 	}
@@ -150,8 +151,9 @@ class users extends entity {
 	 * vérifie de le user enregistré
 	 * @return boolean
 	 */
-	function isRegistered() {
-		$query = "select";
+	function isRegistered($numero) {
+		$query = "SELECT registered FROM entity::table WHERE num_tel = '".$numero."'";
+		return parent::__select($query);		
 	}
 }
 
