@@ -200,6 +200,7 @@ include_once __content_path__."/users.action.php";
 						obj.placeholder.text(obj.val);
 						obj.input.val(obj.val);
 						$("#expediteur").val(obj.indicatif);
+						$("#ind_num").val(obj.indicatif);
 					});
 				},
 				getValue : function() {

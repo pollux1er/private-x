@@ -131,7 +131,7 @@
 			<li><a href="#">Ghana <span class="indicatif">+233</span></a></li>
 		</ul>
 		
-		<input id="num_expediteur" type="hidden" name="num_expediteur"/>
+		<input id="ind_num" type="hidden" name="ind_num"/>
 	
 	</div>
 	
