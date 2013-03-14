@@ -5,6 +5,7 @@
  */
 class users extends entity {
 
+	var $table = __CLASS__;
 	var $id;
 	var $pseudo;
 	var $passwd;
@@ -21,7 +22,7 @@ class users extends entity {
 	/**
 	 * constructeur de la classe user
 	 */	
-	function __construct($id, $pseudo, $pwd, $numtel, $country, $email = "", $status = "", $reseau = "", $reg = "") {
+	function construct($id, $pseudo, $pwd, $numtel, $country, $email = "", $status = "", $reseau = "", $reg = "") {
 		$this->setId($id);
 		$this->setPseudo($pseudo);
 		$this->setPasswd($pwd);
@@ -91,7 +92,8 @@ class users extends entity {
 	 * @return boolean
 	 */
 	function validateNum_tel() {
-		
+		$str = explode("+", $this->num_tel);
+		return true;
 	}
 	/**
 	 * fonction qui permet de valider le mot de passe
@@ -128,7 +130,7 @@ class users extends entity {
 			$query_params .= ", registered";
 			$query_params_values .= ", '".$this->registered."'"; 
 		} else {  }
-		$query = "insert into $table (pseudo, passwd, num_tel, country $query_params) values ('".$this->pseudo."', '".$this->passwd."', '".$this->num_tel."', '".$this->country."' $query_param_values)";
+		$query = "insert into $this->table (pseudo, passwd, num_tel, country $query_params) values ('".$this->pseudo."', '".$this->passwd."', '".$this->num_tel."', '".$this->country."' $query_param_values)";
 		return parent::__insert($query);
 	}
 	
@@ -151,8 +153,11 @@ class users extends entity {
 	 * vérifie de le user enregistré
 	 * @return boolean
 	 */
-	function isRegistered($numero) {
-		$query = "SELECT registered FROM entity::table WHERE num_tel = '".$numero."'";
+	function isRegistered() {	
+		if (!$this->validateNum_tel()) {
+			//return array;	
+		}
+		$query = "SELECT registered FROM $this->table WHERE num_tel = '".$this->num_tel."';";
 		return parent::__select($query);		
 	}
 }

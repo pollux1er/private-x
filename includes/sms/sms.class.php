@@ -5,6 +5,7 @@
  */
 class sms {
 
+	var $table = __CLASS__;
 	var $id;
 	var $id_em;
 	var $num_tel_em;

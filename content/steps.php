@@ -1,13 +1,13 @@
 <?php if(isset($_GET['step'])) { 
 	// etape 2 verification du code recu
 	if($_GET['step'] == '2') { ?>
-	<form method="POST" action="controllers/verifyUserNumber.php">										
+	<form method="POST" action="controllers/verify_user_number.php">										
 		<label for="expediteur">
 				Entrez le code<br /> de verification 
 		</label>
 		<input name="expediteur" id="expediteur" type="text" placeholder="ex: Q5D6E (recu par SMS)"/>
 									
-		<button class="btn btn-info clearfix" type="submit">Verfiier <i class="icon-double-angle-right"></i></button>
+		<button class="btn btn-info clearfix" type="submit">Verfier <i class="icon-double-angle-right"></i></button>
 	</form>
 	
 	<?php }
@@ -32,7 +32,7 @@
 	<?php }
 	// etape 6 num destinataires
 	if($_GET['step'] == '6') { ?>
-	<form method="POST" action="controllers/getDestNumber.php">
+	<form method="POST" action="controllers/get_dest_number.php">
 		<label for="expediteur">
 				Numero destinataire
 		</label>
@@ -54,7 +54,7 @@
 	
 	// etape 7 num destinataires
 	if($_GET['step'] == '7') { ?>
-	<form method="POST" id="myform" action="controllers/checkSMS.php">
+	<form method="POST" id="myform" action="controllers/check_sms.php">
 		<label for="expediteur">
 				De <span> +23799124249 </span>
 		</label>
@@ -86,7 +86,7 @@
 	
 	// etape 7 num destinataires
 	if($_GET['step'] == '8') { ?>
-	<form method="POST" id="myform" action="controllers/checkSMS.php">
+	<form method="POST" id="myform" action="controllers/check_sms.php">
 		<label for="expediteur">
 				De <span> +23799124249 </span>
 		</label>
@@ -118,7 +118,7 @@
 	
 	<?php }
  } else { ?>
-<form method="POST" action="controllers/getUserNumber.php">										
+<form method="POST" action="controllers/get_user_number.php">										
 	<label for="expediteur">
 			Votre Num&eacute;ro
 	</label>

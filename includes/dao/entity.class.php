@@ -3,17 +3,12 @@
 class entity {
 
 	var $_result;
-	var $table;
 
 	/**
-	 *
+	 * nettoie la donnée de toutes ses impuretés
 	 */
 	function cleanData($data) {
 		return db::getInstance()->quote($data);	
-	}
-	
-	function contruct() {
-		$this->table = __CLASS__;
 	}
 
 	/*
@@ -76,8 +71,8 @@ class entity {
 			echo "Erreur de la requete : " . $e->getMessage() . "<br>";
 			echo "<pre>". var_dump(db::getCon()->errorInfo()) . "</pre>";
 		}
-		
-		return $st->fetchAll(PDO::FETCH_OBJ);
+		//return $st->fetchAll(PDO::FETCH_OBJ);
+		return $st->fetchAll();
 	}
 	
 	public function __count($table) {
