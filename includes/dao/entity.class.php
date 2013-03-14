@@ -21,7 +21,7 @@ class entity {
 		try {
 			db::getInstance()->exec("set names utf8");
 			$this->_result = db::getInstance()->exec($requete);
-			if(db::traceSQL) db::traceSQL($requete, $motif);
+			//if(db::traceSQL) db::traceSQL($requete, $motif);
 		} catch(PDOException $exception) {
 			echo "Erreur de la requete : " . $exception->getMessage() . "<br>";
 			echo "<pre>". var_dump(db::getCon()->errorInfo()) . "</pre>";

@@ -17,6 +17,7 @@ class users extends entity {
 	var $reseau_tel;
 	//0='non', 1='oui'
 	var $registered; 
+	var $check_code;
 	
 
 	/**
@@ -46,6 +47,12 @@ class users extends entity {
 	function setCountry($country) { $this->country = $country; }
 	function setResau_tel($rstel) { $this->reseau_tel = $rstel; }
 	function setRegistered($reg) { $this->registered = $reg; }
+	function setCheck_code($code) { $this->check_code = $code; }
+	
+	/**
+	 * fonctions get de tous les attributs de la classe
+	 */
+	function getNum_tel() { return $this->num_tel; }
 	
 	/**
 	 * fonction pour nettoyer toutes les données qui vont dans la BDD
@@ -108,29 +115,8 @@ class users extends entity {
 	 * @return
 	 */
 	function save_new() {
-		$query_params = "";
-		$query_params_values = "";
-		// si l'email est renseigné, on doit l'inclure dans la requete
-		if ($this->email != "" && $this->email != null) {
-			$query_params .= ", email";
-			$query_params_values .= ", '".$this->email."'"; 
-		} else {  }
-		// si le status est renseigné, on doit l'inclure dans la requete
-		if ($this->status != "" && $this->status != null) {
-			$query_params .= ", status";
-			$query_params_values .= ", '".$this->status."'"; 
-		} else {  }
-		// si le reseau telephonique est renseigné, on doit l'inclure dans la requete
-		if ($this->reseau_tel != "" && $this->reseau_tel != null) {
-			$query_params .= ", reseau_tel";
-			$query_params_values .= ", '".$this->reseau_tel."'"; 
-		} else {  }
-		// si le registered est renseigné, on doit l'inclure dans la requete
-		if ($this->registered != "" && $this->registered != null) {
-			$query_params .= ", registered";
-			$query_params_values .= ", '".$this->registered."'"; 
-		} else {  }
-		$query = "insert into $this->table (pseudo, passwd, num_tel, country $query_params) values ('".$this->pseudo."', '".$this->passwd."', '".$this->num_tel."', '".$this->country."' $query_param_values)";
+		$query = "insert into $this->table (num_tel, country, check_code) values ('".$this->num_tel."','".$this->country."','".$this->check_code."')";
+		//echo "<br>$query<br>";
 		return parent::__insert($query);
 	}
 	
@@ -159,6 +145,26 @@ class users extends entity {
 		}
 		$query = "SELECT registered FROM $this->table WHERE num_tel = '".$this->num_tel."';";
 		return parent::__select($query);		
+	}
+	
+	/**
+	 * génère un code aléatoire pour la validation d'un user
+	 */
+	function generate_check_code($numchars = 6, $digits = 1, $letters = 1){
+	   	$dig = "012345678923456789";
+	   	$abc = "ABCDEFGHJKLMNOPQRSTUVWXYZ";
+	   	$str = ''; $randomized='';
+	   	if($letters == 1){
+			$str .= $abc;
+	   	}
+	   	if($digits == 1){
+			$str .= $dig;
+	   	}
+	
+	   	for($i=0; $i < $numchars; $i++){
+			$randomized .= $str{rand() % strlen($str)};
+	   	}
+		$this->setCheck_code($randomized);
 	}
 }
 

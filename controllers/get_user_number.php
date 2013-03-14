@@ -27,10 +27,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$ind_numbers = $country->store_indnum_in_stack($countries);
 	
 	// Detecter de kel pays est l'internaute et enregistre son numero dans la BD
-	
-	
-	//$_SESSION['checkCode'] = users::generateCheckCode($_SESSION['sender_number']);
-	
+	$ind_num = (isset($_POST["ind_num"])) ? trim($_POST["ind_num"]) : "";
+	$bool = explode ($ind_num, $user->getNum_tel());
+	if (count($bool) == 2) {
+		for ($i=0; $i<count($ind_numbers); ) {
+			if ($ind_num == $ind_numbers[$i]) {
+				break;
+			} else { $i++; }
+		}
+		$user->setCountry($countries[$i]["country"]);
+		$user->generate_check_code();
+		$user->save_new();	
+		// --- fonction d'envoie du SMS
+	} else {  }
 	
 	// Conduire l internaute a letape 2 pour kil verifie son numero 
 	header('location:../main.php?step=2');

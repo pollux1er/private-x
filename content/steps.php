@@ -130,9 +130,7 @@
 			<li><a href="#">C&ocirc;te d'ivoire <span class="indicatif">+225</span></a></li>
 			<li><a href="#">Ghana <span class="indicatif">+233</span></a></li>
 		</ul>
-		
 		<input id="ind_num" type="hidden" name="ind_num"/>
-	
 	</div>
 	
 	<input name="expediteur" id="expediteur" type="text" placeholder="ex: +23711111111"/>
