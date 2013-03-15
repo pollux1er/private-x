@@ -126,10 +126,10 @@ class users extends entity {
 	 */
 	
 	function send_check_code() {
-		$sms = new sms('SMS4EVER');
-		$this->message = 'SMS4EVER confirmation code : ' . $this->check_code . '.\n';
-		$this->message .= '----------';
-		$this->message .= 'Send Unlimited free SMS to your friends.';
+		$sms = new sms('SMS4EVER%2ENE');
+		$this->message = 'SMS4EVER.NET confirmation code : ' . $this->check_code . ".\n";
+		$this->message .= "________________\n";
+		$this->message .= 'Send free SMS to your friends.';
 		return $sms->send_sms($this->num_tel, $this->message);
 	}
 	
