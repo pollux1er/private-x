@@ -10,6 +10,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	include_once __includes_path__."/dao/entity.class.php";
 	include_once __includes_path__."/dao/country.class.php";
 	include_once __includes_path__."/dao/users.class.php";
+	
 
 	db::connexion();
 	
@@ -17,9 +18,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	//----var_dump(users::isRegistered($_SESSION['sender_number'])); die;
 	$user = new users();
 	$user->setNum_tel($_SESSION['sender_number']);
-	if (var_dump($user->isRegistered())) {
+	if ($user->isRegistered()) {
 		$_SESSION["error"]["sender_number"] = "<p>Veuillez vous connecter. Votre numéro a déjà été enregistré<p>";
-		die;
+		//die;
+		header('location:../main.php?step=3');
 	} else { }
 	// selection de tous les country afin de voir le numéro est autorisé. On ne sait trop jamais
 	$country = new country();
@@ -39,6 +41,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$user->generate_check_code();
 		$user->save_new();	
 		// --- fonction d'envoie du SMS
+		include_once __includes_path__."/sms/sms.class.php";
+		$user->send_check_code();
 	} else {  }
 	
 	// Conduire l internaute a letape 2 pour kil verifie son numero 

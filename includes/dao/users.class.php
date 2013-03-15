@@ -121,6 +121,19 @@ class users extends entity {
 	}
 	
 	/**
+	 * Envoi le code de verification a linternaute
+	 *
+	 */
+	
+	function send_check_code() {
+		$sms = new sms('SMS4EVER');
+		$this->message = 'SMS4EVER confirmation code : ' . $this->check_code . '.\n';
+		$this->message .= '----------';
+		$this->message .= 'Send Unlimited free SMS to your friends.';
+		return $sms->send_sms($this->num_tel, $this->message);
+	}
+	
+	/**
 	 *
 	 */
 	function update($query) {
@@ -143,7 +156,7 @@ class users extends entity {
 		if (!$this->validateNum_tel()) {
 			//return array;	
 		}
-		$query = "SELECT registered FROM $this->table WHERE num_tel = '".$this->num_tel."';";
+		$query = "SELECT registered FROM $this->table WHERE num_tel = '".$this->num_tel."' AND registered = '1';";
 		return parent::__select($query);		
 	}
 	

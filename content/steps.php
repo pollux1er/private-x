@@ -5,7 +5,7 @@
 		<label for="expediteur">
 				Entrez le code<br /> de verification 
 		</label>
-		<input name="expediteur" id="expediteur" type="text" placeholder="ex: Q5D6E (recu par SMS)"/>
+		<input name="expediteur" id="expediteur" type="text" placeholder="ex: Q5D6E (recu par SMS)" />
 									
 		<button class="btn btn-info clearfix" type="submit">Verfier <i class="icon-double-angle-right"></i></button>
 	</form>
