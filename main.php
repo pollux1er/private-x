@@ -24,7 +24,7 @@ include_once "config.inc.php";
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$("#contentbox").keyup(function(){
+			$("#message").keyup(function(){
 				var box=$(this).val();
 				var main = box.length *100;
 				var value= (main / 145);

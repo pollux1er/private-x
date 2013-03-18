@@ -18,6 +18,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	//----var_dump(users::isRegistered($_SESSION['sender_number'])); die;
 	$user = new users();
 	$user->setNum_tel($_SESSION['sender_number']);
+	
 	if ($user->isRegistered()) {
 		$_SESSION["error"]["sender_number"] = "<p>Veuillez vous connecter. Votre numéro a déjà été enregistré<p>";
 		//die;
@@ -27,6 +28,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$country = new country();
 	$countries = $country->select();
 	$ind_numbers = $country->store_indnum_in_stack($countries);
+	
+	// Detecter si une verification a deja eu lieu
+	if ($user->hasAlreadyReceivedCode()) {
+		
+		$_SESSION["error"]["sender_number"] = "<p>Veuillez entrer votre code de verification.<p>";
+		//die;
+		header('location:../main.php?step=2'); die;
+	} else { }
+	
 	
 	// Detecter de kel pays est l'internaute et enregistre son numero dans la BD
 	$ind_num = (isset($_POST["ind_num"])) ? trim($_POST["ind_num"]) : "";

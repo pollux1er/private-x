@@ -126,7 +126,7 @@ class users extends entity {
 	 */
 	
 	function send_check_code() {
-		$sms = new sms('SMS4EVER%2ENE');
+		$sms = new sms('SMS4EVER');
 		$this->message = 'SMS4EVER.NET confirmation code : ' . $this->check_code . ".\n";
 		$this->message .= "________________\n";
 		$this->message .= 'Send free SMS to your friends.';
@@ -156,10 +156,45 @@ class users extends entity {
 		if (!$this->validateNum_tel()) {
 			//return array;	
 		}
-		$query = "SELECT registered FROM $this->table WHERE num_tel = '".$this->num_tel."' AND registered = '1';";
-		return parent::__select($query);		
+		$query = "SELECT registered FROM $this->table WHERE num_tel = '".$this->num_tel."' AND registered = '1' LIMIT 1;";
+		return count(parent::__select($query));		
 	}
 	
+	/**
+	 * vérifie si le user a deja tente de se faire verifier
+	 * @return boolean
+	 */
+	function hasAlreadyReceivedCode() {	
+		if (!$this->validateNum_tel()) {
+			//return array;	
+		}
+		$query = "SELECT registered, status FROM $this->table WHERE num_tel = '".$this->num_tel."' AND registered = '0' AND status = '0' LIMIT 1;";
+		return count(parent::__select($query));		
+	}
+	
+	/**
+	 * vérifie si le user a deja tente de se faire verifier
+	 * @return boolean
+	 */
+	function checkUserCode($codetocheck) {	
+		if (!$this->validateNum_tel()) {
+			//return array;	
+		}
+		$query = "SELECT check_code FROM $this->table WHERE num_tel = '".$_SESSION['sender_number']."' LIMIT 1;";
+		//var_dump($query); die;
+		$code = parent::__select($query);	
+		// si la requete a donne kelke chose on prends sinon on retourne false
+		if(count($code) == 1) 
+			$code = $code[0]; // on met le tableau dans une variable
+		else 
+			return false;
+			
+		$code = $code[0];
+		
+		if(strtolower(trim($codetocheck)) == strtolower($code)) // on fait une verification sans casse
+			return true;
+		
+	}
 	/**
 	 * génère un code aléatoire pour la validation d'un user
 	 */

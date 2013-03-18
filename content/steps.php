@@ -5,7 +5,7 @@
 		<label for="expediteur">
 				Entrez le code<br /> de verification 
 		</label>
-		<input name="expediteur" id="expediteur" type="text" placeholder="ex: Q5D6E (recu par SMS)" />
+		<input name="code" id="code" type="text" placeholder="ex: Q5D6E (recu par SMS)" />
 									
 		<button class="btn btn-info clearfix" type="submit">Verfier <i class="icon-double-angle-right"></i></button>
 	</form>
@@ -64,7 +64,7 @@
             <div id="count">145</div>
             <div id="barbox"><div id="bar"></div></div>
 		</div>
-		<textarea id="contentbox" name="message"></textarea>
+		<textarea id="message" name="message"></textarea>
 		<button class="btn btn-info clearfix" type="submit">Suivant <i class="icon-double-angle-right"></i></button>
 	</form>
 	<?php }
@@ -84,7 +84,7 @@
 			Votre message :<br />
 			<span style="font-style:italic"><?php echo $_SESSION['message']; ?></span>
 		</label>
-        <button class="btn btn-info clearfix" type="">Modifier le message <i class="icon-double-angle-left"></i></button>
+        <button class="btn btn-info clearfix" type="">Modifier le message <i class="icon-double-angle-left"></i></button><br />
 		<button class="btn btn-info clearfix" type="submit">Confirmer et envoyer <i class="icon-double-angle-right"></i></button>
 	</form>
 	

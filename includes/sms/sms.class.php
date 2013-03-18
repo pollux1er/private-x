@@ -134,14 +134,18 @@ class sms extends entity {
 	/**
 	 * constructeur de la classe sms
 	 */	
-	function construct($num_tel_em, $num_tel_recep, $mess, $error) {
+	function __construct($num_tel_em/*, $num_tel_recep, $mess , $error */) {
+		// Je veux éviter de le surcharger de données qu'on ne peut pas fournir à tous les coup!
+		// Pour moi le constructeur veut dire qu'on instancie d'abord l'objet, les manipulations surviennent après
+		// Idéalement on sait presque toujours qui veut envoyer le SMS donc c la donnée initiale.
 		//$this->setId($id);
 		//$this->setId_em($em);
 		$this->setNum_tel_em($num_tel_em);
-		$this->setNum_tel_recep($num_tel_recep);
-		$this->setMessage($mess);
-		$this->setError_status($error);
+		// $this->setNum_tel_recep($num_tel_recep);
+		// $this->setMessage($mess);
+		//	$this->setError_status($error);
 		$this->setAdr_ip_em($_SERVER['REMOTE_ADDR']);
+		//var_dump($this->num_tel_em);
 	}
 	
 	/**
@@ -199,7 +203,9 @@ class sms extends entity {
 		$source = $this->num_tel_em;
 		$type = "0";
 		$dlr = "1";
-		
+		// on enleve le + devant le numero de lemetteur pour eviter lerreur 1707
+		$source = str_replace("+", "", $source);
+		//var_dump($this->num_tel_em);
 		if(empty($msg))
 			return false;
 		$destination = str_replace("+", "", $destination);
@@ -214,7 +220,12 @@ class sms extends entity {
 	 * insère dans la BDD un nouvel utilisateur
 	 * @return
 	 */
-	function save_new() {
+	function save_new($num_tel_recep, $mess) {
+		$this->setNum_tel_recep($num_tel_recep);
+		$this->setMessage($mess);
+		
+		$this->setError_status($this->send_sms($this->num_tel_recep, $this->message)); // on envoi le sms en prenant directement le code json retour
+		
 		$this->cleanAll_data();
 		$query = "insert into $this->table (num_tel_em, num_tel_recep, message, error_status, adr_ip_em) values 
 					(".$this->num_tel_em.", ".$this->num_tel_recep.", ".$this->message.", ".$this->error_status.", 

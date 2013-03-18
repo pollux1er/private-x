@@ -9,10 +9,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	include_once __includes_path__."/dao/entity.class.php";
 	include_once __includes_path__."/sms/sms.class.php";
 	
-	$sms = new sms();
-	$sms->construct($_SESSION['sender_number'], $_SESSION['dest_number'], $_SESSION['message'], 'error');
+	$sms = new sms($_SESSION['sender_number']);
+	//$sms->construct($_SESSION['sender_number'], $_SESSION['dest_number'], $_SESSION['message'], 'error'); // ?? pas besoin de call le construteur je crois
 	// verification de la sauvegarde du sms dans la BDD
-	if ($sms->save_new()) {
+	if ($sms->save_new($_SESSION['dest_number'], $_SESSION['message'])) {
 		// si la sauvegarde a été bien effectué, on peut envoyé le sms
 		//--- envoie du sms
 		// redirection sur l'étape 9

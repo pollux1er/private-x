@@ -2,7 +2,7 @@
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	session_start();
 	$dest_number = $_POST['expediteur'];
-	$_SESSION['dest_number'] = '';
+	$_SESSION['dest_number'] = $dest_number;
 	
 	// inclusion des utilitaires pour usage 
 	include_once "../config.inc.php";
@@ -34,8 +34,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 			}
 			// si le numéro commence bien par un des indicatifs 
 			if ($i < count($ind_numbers)) {
-				$_SESSION['dest_number'] = $dest_number;
-				header('location:../main.php?step=7');
+				$_SESSION['dest_number'] = $dest_number;  // deja repete plus haut ligne 5
+				header('location:../main.php?step=7'); die;
 			} else {  
 				header('location:../main.php?step=6');
 			}
