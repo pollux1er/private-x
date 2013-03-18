@@ -119,7 +119,7 @@ class Sender{
 	}
 }
 
-class sms {
+class sms extends entity {
 
 	var $table = __CLASS__;
 	var $id;
@@ -132,15 +132,15 @@ class sms {
 	
 	
 	/**
-	 * constructeur de la classe user
+	 * constructeur de la classe sms
 	 */	
-	function __construct($emetteur) {
+	function construct($num_tel_em, $num_tel_recep, $mess, $error) {
 		//$this->setId($id);
 		//$this->setId_em($em);
-		$this->setNum_tel_em($emetteur);
-		//$this->setNum_tel_recep($num_tel_recep);
-		//$this->setMessage($mess);
-		//$this->setError($error);
+		$this->setNum_tel_em($num_tel_em);
+		$this->setNum_tel_recep($num_tel_recep);
+		$this->setMessage($mess);
+		$this->setError_status($error);
 		$this->setAdr_ip_em($_SERVER['REMOTE_ADDR']);
 	}
 	
@@ -152,7 +152,7 @@ class sms {
 	function setNum_tel_em($num) { $this->num_tel_em = $num; }
 	function setNum_tel_recep($num) { $this->num_tel_recep = $num; }
 	function setMessage($mess) { $this->message = $mess; }
-	function setError($err) { $this->error_status = $err; }
+	function setError_status($err) { $this->error_status = $err; }
 	function setAdr_ip_em($adr) { $this->adr_ip_em = $adr; }
 	
 	/**
@@ -161,7 +161,8 @@ class sms {
 	function cleanNum_tel_em() { $this->num_tel_em = parent::cleanData($this->num_tel_em); }
 	function cleanNum_tel_recep() { $this->num_tel_recep = parent::cleanData($this->num_tel_recep); }
 	function cleanMessage() { $this->message = parent::cleanData($this->message); }
-	function cleanError() { $this->error = parent::cleanData($this->error); }
+	function cleanError_status() { $this->error_status = parent::cleanData($this->error_status); }
+	function cleanAdr_ip_em() { $this->adr_ip_em = parent::cleanData($this->adr_ip_em); }
 	
 	/**
 	 *
@@ -170,7 +171,7 @@ class sms {
 		$this->cleanNum_tel_em();
 		$this->cleanNum_tel_recep();
 		$this->cleanMessage();
-		$this->cleanError();
+		$this->cleanError_status();
 		$this->cleanAdr_ip_em();
 	}
 	
@@ -180,6 +181,11 @@ class sms {
 	 */
 	function validateNum_tel_em() {
 		
+	}
+	
+	function validateMessage() {
+		
+		return true;	
 	}
 	
 	/*
@@ -209,7 +215,10 @@ class sms {
 	 * @return
 	 */
 	function save_new() {
-		$query = '';
+		$this->cleanAll_data();
+		$query = "insert into $this->table (num_tel_em, num_tel_recep, message, error_status, adr_ip_em) values 
+					(".$this->num_tel_em.", ".$this->num_tel_recep.", ".$this->message.", ".$this->error_status.", 
+					 ".$this->adr_ip_em.")";
 		return parent::__insert($query);
 	}
 	

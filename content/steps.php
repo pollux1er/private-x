@@ -17,14 +17,11 @@
 		<label for="expediteur">
 				Votre numero
 		</label>
-		
 		<input name="user" id="user" type="text" placeholder="ex: +23799124249" />
 		<label for="expediteur">
 				Votre mot de passe
 		</label>
-		
-		<input name="user" id="user" type="text" />
-									
+		<input name="user" id="user" type="text" />					
 		<button class="btn btn-info clearfix" type="submit">Connexion <i class="icon-double-angle-right"></i></button>
 	</form>
 	
@@ -45,7 +42,7 @@
 				<li><a href="#">Ghana <span class="indicatif">+233</span></a></li>
 			</ul>
 		</div>
-		
+		<input id="ind_num" type="hidden" name="ind_num"/>
 		<input name="expediteur" id="expediteur" type="text" placeholder="ex: +23711111111"/>
 									
 		<button class="btn btn-info clearfix" type="submit">Suivant <i class="icon-double-angle-right"></i></button>
@@ -56,52 +53,38 @@
 	if($_GET['step'] == '7') { ?>
 	<form method="POST" id="myform" action="controllers/check_sms.php">
 		<label for="expediteur">
-				De <span> +23799124249 </span>
+			De <span> <?php echo $_SESSION['sender_number']; ?> </span>
+            <button class="btn btn-info clearfix" type="">Modifier <i class="icon-double-angle-left"></i></button>
 		</label>
-		
 		<label for="expediteur">
-			Votre Correspondant
+			A <span> <?php echo $_SESSION['dest_number']; ?> </span>
+            <button class="btn btn-info clearfix" type="">Modifier <i class="icon-double-angle-left"></i></button>
 		</label>
-		
-		<div id="dd" class="wrapper-dropdown" tabindex="1">
-			<span>Pays du destinataire</span>
-			<ul class="dropdown">
-				<li><a href="#">Cameroun <span class="indicatif">+237</span></a></li>
-				<li><a href="#">C&ocirc;te d'ivoire <span class="indicatif">+225</span></a></li>
-				<li><a href="#">Ghana <span class="indicatif">+233</span></a></li>
-			</ul>
-			
-			<input id="num_expediteur" type="hidden" name="num_expediteur"/>
-		
-		</div>
-		<input name="expediteur" id="expediteur" type="text" placeholder="ex: +23711111111"/>
 		<div>Votre message
-		<div id="count">145</div>
-		<div id="barbox"><div id="bar"></div></div>
+            <div id="count">145</div>
+            <div id="barbox"><div id="bar"></div></div>
 		</div>
-		<textarea id="contentbox"></textarea>
+		<textarea id="contentbox" name="message"></textarea>
 		<button class="btn btn-info clearfix" type="submit">Suivant <i class="icon-double-angle-right"></i></button>
 	</form>
 	<?php }
 	
 	// etape 7 num destinataires
 	if($_GET['step'] == '8') { ?>
-	<form method="POST" id="myform" action="controllers/check_sms.php">
+	<form method="POST" id="myform" action="controllers/send_sms.php">
 		<label for="expediteur">
-				De <span> +23799124249 </span>
+			De <span> <?php echo $_SESSION['sender_number']; ?> </span>
+            <button class="btn btn-info clearfix" type="">Modifier <i class="icon-double-angle-left"></i></button>
 		</label>
-		
 		<label for="recepteur">
-			A <span> +23776270034 </span>
+			A <span> <?php echo $_SESSION['dest_number']; ?> </span>
+            <button class="btn btn-info clearfix" type="">Modifier <i class="icon-double-angle-left"></i></button>
 		</label>
-		
 		<label for="message">
 			Votre message :<br />
-			<span style="font-style:italic"> "Ici on redige le message de notre correspondant et on s'assure que celui ci est expedie. Merci"</span>
+			<span style="font-style:italic"><?php echo $_SESSION['message']; ?></span>
 		</label>
-		
-		
-		
+        <button class="btn btn-info clearfix" type="">Modifier le message <i class="icon-double-angle-left"></i></button>
 		<button class="btn btn-info clearfix" type="submit">Confirmer et envoyer <i class="icon-double-angle-right"></i></button>
 	</form>
 	
