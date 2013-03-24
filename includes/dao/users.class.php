@@ -125,11 +125,22 @@ class users extends entity {
 	 *
 	 */
 	
-	function send_check_code() {
+	function send_check_code($lang = null) {
+		if(!isset($lang)) // test pour savoir si la variable de lang a ete passee 
+			$lang = 'fr';
 		$sms = new sms('SMS4EVER');
-		$this->message = 'SMS4EVER.NET confirmation code : ' . $this->check_code . ".\n";
-		$this->message .= "________________\n";
-		$this->message .= 'Send free SMS to your friends.';
+		
+		if($lang == 'en') {
+			$this->message = 'SMS4EVER.NET verification code : ' . $this->check_code . ".\n";
+			$this->message .= 'Keep this code safe. Consider it as your password until you change it.' . "\n";
+			$this->message .= "________________\n";
+			$this->message .= 'Send free SMS to your friends.';
+		} elseif($lang == 'fr') {
+			$this->message = 'SMS4EVER.NET code de vérification : ' . $this->check_code . ".\n";
+			$this->message .= 'Il reste votre mot de passe jusqu\'à ce que vous le changiez.' . "\n";
+			$this->message .= "______________\n";
+			$this->message .= 'Envoyer des SMS à vos amis gratuitement.';
+		}
 		return $sms->send_sms($this->num_tel, $this->message);
 	}
 	

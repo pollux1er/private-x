@@ -70,6 +70,7 @@ include_once "config.inc.php";
 								<div class="nav-collapse">
 									<ul class="nav">
 										<li><a href="active">Envoyer un sms</a></li>
+										<li><a href="#">Inviter vos amis</a></li>
 										<li><a href="#"><img alt="Sens free SMS" src="img/gb.png"/> English</a></li>
 										<li><a href="#"><img alt="Envoie de sms gratuit" src="img/fr.png"/> French</a></li>
 									</ul>
@@ -107,7 +108,7 @@ include_once "config.inc.php";
 					</div>
 					<div class="span6 form">
 						<?php include('content/steps.php'); ?>
-						<h1 class="frontpageHeadline">Envoyez des SMS &agrave; vos amis! (C'est gratuit!)</h1>
+						
 					</div>
 					<div class="span7 main">
 					</div>

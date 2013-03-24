@@ -21,6 +21,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		//die;
 		header('location:../main.php?step=2'); die;
 	} else {
+		// On coche lutilisateur comme enregistre sur le site en sauvegardant son code comme mot de passe
 		
 	}
 	

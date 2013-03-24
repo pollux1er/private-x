@@ -208,10 +208,16 @@ class sms extends entity {
 		//var_dump($this->num_tel_em);
 		if(empty($msg))
 			return false;
-		$destination = str_replace("+", "", $destination);
+		$this->message = $msg;
+		$this->num_tel_recep = $destination = str_replace("+", "", $destination);
 		$sms = new Sender($host, $port, $user, $pass, $source, $msg, $destination, $type, $dlr);
 		$this->error_status = $sms->Submit();
-		
+		$this->cleanAll_data();
+		// on enregistre le sms kon vient dessayer denvoyer dans la table des sms
+		$query = "insert into $this->table (num_tel_em, num_tel_recep, message, error_status, adr_ip_em) values 
+					(".$this->num_tel_em.", ".$this->num_tel_recep.", ".$this->message.", ".$this->error_status.", 
+					 ".$this->adr_ip_em.")";
+		parent::__insert($query);
 		return $this->error_status;
 	}
 	

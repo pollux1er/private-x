@@ -95,8 +95,18 @@
 	<div>
 		<br /><br />
 		Votre message a bien ete bien envoye. <br /><br /><br />
-		<button class="btn btn-info clearfix" type="submit">Envoyer un autre message<i class="icon-double-angle-right"></i></button><br /><br /><br /><br /><br />
-		
+		<button class="btn btn-info clearfix" onclick="window.location='main.php?step=6'" type="submit">Envoyer un autre message<i class="icon-double-angle-right"></i></button><br />
+		<script type="text/javascript"><!--
+		google_ad_client = "ca-pub-9496068225375418";
+		/* SMS4EVER - */
+		google_ad_slot = "6726011340";
+		google_ad_width = 234;
+		google_ad_height = 60;
+		//-->
+		</script>
+		<script type="text/javascript"
+		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+		</script>
 	</div>
 	
 	<?php }
@@ -120,4 +130,5 @@
 								
 	<button class="btn btn-info clearfix" type="submit">Suivant <i class="icon-double-angle-right"></i></button>
 </form>
+<h1 class="frontpageHeadline">Envoyez des SMS &agrave; vos amis! (C'est gratuit!)</h1>
 <?php } ?>
