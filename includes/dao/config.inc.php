@@ -6,7 +6,7 @@ define ("__dbtype__", 'mysql');
 /**
  * L'hote de la bd généralement
  */
-define ("__host__", "127.0.0.1");
+define ("__host__", "localhost");
 /**
  * Le nom d'utilisateur ayant des droits sur la bd 
  */
@@ -18,7 +18,7 @@ define ("__dbupwd__", "");
 /**
  * Le nom de la bd
  */
-define ("__dbname__", "smsforever");
+define ("__dbname__", "sms4rever");
 /**
  * Le Data Source Name DSN
  */
