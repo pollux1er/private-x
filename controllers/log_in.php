@@ -11,19 +11,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 
 	db::connexion();
-	// On verifie le code recu
 	
-	// On check si l'utilisateur a deja un compte
 	$user = new users();
-	if (!$user->checkUserCode($_POST['code'])) {
-		
-		$_SESSION["error"]["sender_number"] = "<p>Veuillez entrer le code verification recu par SMS.<p>";
-		//die;
-		header('location:../main.php?step=2'); die;
-	} else {
-		// On coche lutilisateur comme enregistre sur le site en sauvegardant son code comme mot de passe
-		$user->set_registered($_SESSION['sender_number']);
-	}
 	
 	// Si non alors il peut envoyer son SMS d'abord
 	header('location:../main.php?step=6');

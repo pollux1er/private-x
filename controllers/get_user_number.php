@@ -15,14 +15,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	db::connexion();
 	
 	// Verifions si ce numero est deja enregistree 
-	//----var_dump(users::isRegistered($_SESSION['sender_number'])); die;
+	
 	$user = new users();
 	$user->setNum_tel($_SESSION['sender_number']);
-	
+	//var_dump($user->isRegistered()); die;
 	if ($user->isRegistered()) {
 		$_SESSION["error"]["sender_number"] = "<p>Veuillez vous connecter. Votre numéro a déjà été enregistré<p>";
-		//die;
-		header('location:../main.php?step=3');
+		
+		header('location:../main.php?step=3');die;
 	} else { }
 	// selection de tous les country afin de voir le numéro est autorisé. On ne sait trop jamais
 	$country = new country();

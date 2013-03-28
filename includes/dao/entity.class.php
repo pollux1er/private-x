@@ -61,10 +61,9 @@ class entity {
 	 */
 	public function __select($requete, $motif = null) {
 		try {
-			
-			db::getCon()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			db::getInstance()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			if(preg_match("/date/", $requete)) {
-				$this->sql("SET lc_time_names = 'fr_FR';");
+				db::getInstance()->query("SET lc_time_names = 'fr_FR';");
 			}
 			$st = db::getInstance()->query($requete);
 		} catch (PDOException $e) {
@@ -162,7 +161,7 @@ class entity {
 	 * @return integer 	the number of row affected or 0 if no save was done
 	 */
 	public function update($requete) {
-		return $this->insert($requete);
+		return $this->__insert($requete);
 	}
 }
 ?>

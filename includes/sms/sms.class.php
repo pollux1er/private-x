@@ -129,6 +129,7 @@ class sms extends entity {
 	var $message;
 	var $error_status;
 	var $adr_ip_em;
+	var $max_sms = 5;
 	
 	
 	/**
@@ -214,8 +215,8 @@ class sms extends entity {
 		$this->error_status = $sms->Submit();
 		$this->cleanAll_data();
 		// on enregistre le sms kon vient dessayer denvoyer dans la table des sms
-		$query = "insert into $this->table (num_tel_em, num_tel_recep, message, error_status, adr_ip_em) values 
-					(".$this->num_tel_em.", ".$this->num_tel_recep.", ".$this->message.", ".$this->error_status.", 
+		$query = "insert into $this->table (num_tel_em, num_tel_recep, message, error_status, date, adr_ip_em) values 
+					(".$this->num_tel_em.", ".$this->num_tel_recep.", ".$this->message.", ".$this->error_status.", NOW(), 
 					 ".$this->adr_ip_em.")";
 		parent::__insert($query);
 		return $this->error_status;
@@ -244,6 +245,15 @@ class sms extends entity {
 	 */
 	function select() {
 		
+	}
+	
+	/*
+	 * Compte le nombre de SMS envoye par un emmeteur aujourdhui
+	 * @return int
+	 */
+	function get_nb_sms_sent_today() {
+		$query = "SELECT * FROM $this->table WHERE num_tel_em = '".$_SESSION['sender_number']."' AND DATE( `date` ) = DATE( NOW() ) LIMIT 5;";
+		return count(parent::__select($query));	
 	}
 }
 

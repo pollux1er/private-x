@@ -1,5 +1,6 @@
 <?php
-session_start();
+@session_start();
+
 
 include_once "config.inc.php";
 
@@ -69,7 +70,7 @@ include_once "config.inc.php";
 								</div>
 								<div class="nav-collapse">
 									<ul class="nav">
-										<li><a href="active">Envoyer un sms</a></li>
+										<li><a href="main.php">Envoyer un sms</a></li>
 										<li><a href="#">Inviter vos amis</a></li>
 										<li><a href="#"><img alt="Sens free SMS" src="img/gb.png"/> English</a></li>
 										<li><a href="#"><img alt="Envoie de sms gratuit" src="img/fr.png"/> French</a></li>

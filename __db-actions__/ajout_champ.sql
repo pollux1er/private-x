@@ -1,0 +1,1 @@
+ALTER TABLE `sms` ADD `date` DATETIME NOT NULL AFTER `error_status` ;

@@ -149,7 +149,7 @@ class users extends entity {
 	 */
 	function update($query) {
 		
-		return parent::__update($query);	
+		return parent::update($query);	
 	}
 	
 	/**
@@ -169,6 +169,15 @@ class users extends entity {
 		}
 		$query = "SELECT registered FROM $this->table WHERE num_tel = '".$this->num_tel."' AND registered = '1' LIMIT 1;";
 		return count(parent::__select($query));		
+	}
+	
+	/**
+	 * On marque l'utilisateur comme enregistré
+	 * @return void
+	 */
+	function set_registered($number) {
+		$query = "UPDATE $this->table SET registered = '1' WHERE num_tel = '$number'";
+		$this->update($query);
 	}
 	
 	/**
@@ -225,6 +234,7 @@ class users extends entity {
 	   	}
 		$this->setCheck_code($randomized);
 	}
+	
 }
 
 ?>
