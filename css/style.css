@@ -99,6 +99,11 @@ ul{
 	top: 0;
 	z-index: 9999;
 }
+.form p{
+  padding: 1em;
+	font-weight: bold;
+	color: #666;
+}
 .corps{
   background: #fff;
 	margin-top: 1em;
@@ -110,7 +115,6 @@ ul{
 	padding: 20px;
 }
 .main{
-  background: url(../img/1.png) no-repeat top right;
 	height: 325px;
 	overflow: hidden;
 }
