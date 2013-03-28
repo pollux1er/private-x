@@ -130,9 +130,9 @@ include_once "config.inc.php";
 								  SMS4EVER
 								</h1>
 								<ul>
-								  <li><a href="#"><a href="#">About SMS 4 EVER</a></li>
-									<li><a href="#"><a href="#">SMS 4 EVER Team</a></li>
-									<li><a href="#"><a href="#">SMS 4 EVER Membership</a></li>					
+								  <li><a href="page.php"><a href="#">About SMS 4 EVER</a></li>
+									<li><a href="page.php"><a href="#">SMS 4 EVER Team</a></li>
+									<li><a href="page.php"><a href="#">SMS 4 EVER Membership</a></li>					
 								</ul>
 							</div>
 							<div class="span2">
@@ -140,9 +140,9 @@ include_once "config.inc.php";
 								  Parnership
 								</h1>
 								<ul>
-								  <li><a href="#">Developers</a></li>
-									<li><a href="#">Our SMS Provider</a></li>
-									<li><a href="#">SMS Solutions</a></li>				
+								  <li><a href="page.php">Developers</a></li>
+									<li><a href="page.php">Our SMS Provider</a></li>
+									<li><a href="page.php">SMS Solutions</a></li>				
 								</ul>
 							</div>
 							<div class="span2">
@@ -150,9 +150,9 @@ include_once "config.inc.php";
 								  Community
 								</h1>
 								<ul>
-								  <li><a href="#">Contact us</a></li>
-									<li><a href="#">Facebook</a></li>
-									<li><a href="#">Become a Partner</a></li>					
+								  <li><a href="page.php">Contact us</a></li>
+									<li><a href="page.php">Facebook</a></li>
+									<li><a href="page.php">Become a Partner</a></li>					
 								</ul>
 							</div>
 							<div class="span2">
@@ -160,9 +160,9 @@ include_once "config.inc.php";
 								  Support
 								</h1>
 								<ul>
-									<li><a href="#">Terms of service</a></li>
-									<li><a href="#">Privacy policy</a></li>
-									<li><a href="#">Copyright</a></li>					
+									<li><a href="page.php">Terms of service</a></li>
+									<li><a href="page.php">Privacy policy</a></li>
+									<li><a href="page.php">Copyright</a></li>					
 								</ul>
 							</div>
 						</div>
